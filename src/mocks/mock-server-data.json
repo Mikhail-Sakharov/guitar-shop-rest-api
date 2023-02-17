@@ -1,0 +1,32 @@
+{
+  "api": {
+    "authorIds": [
+      "6398ab2b5a6c4e3fefe83771", "6398ab2b5a6c4e3fefe83772", "6398ab2b5a6c4e3fefe83773"
+    ],
+    "titles": [
+      "Liana Z100", "Честер Bass", "Roman RX"
+    ],
+    "descriptions": [
+      "The best guitar ever!!!!!!!!!!!!!!!!!",
+      "You have never seen that kind of guitar!",
+      "Better buy this guitar, otherwise..."
+    ],
+    "images": [
+      "img/content/catalog-product-3.png",
+      "img/content/catalog-product-2.png",
+      "img/content/catalog-product-6.png",
+      "img/content/catalog-product-4.png",
+      "img/content/catalog-product-1.png",
+      "img/content/catalog-product-5.png",
+      "img/content/catalog-product-7.png",
+      "img/content/catalog-product-8.png",
+      "img/content/catalog-product-0.png"
+    ],
+    "guitarTypes": [
+      "электро", "аккустика", "укулеле"
+    ],
+    "stringsCounts": [4, 6, 7, 12],
+    "emails": ["qwe@qwe.qwe", "asd@asd.asd", "zxc@zxc.zxc"],
+    "names": ["qwerty", "asdfgh", "zxvcbn"]
+  }
+}
