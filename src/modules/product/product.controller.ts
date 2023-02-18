@@ -104,7 +104,6 @@ export default class ProductController extends Controller {
     req: Request<core.ParamsDictionary | GetProductsParams>,
     res: Response
   ): Promise<void> {
-    console.log(req.query);
     const page = Number(req.query._page);
     const limit = Number(req.query._limit);
     const sort = String(req.query._sort);

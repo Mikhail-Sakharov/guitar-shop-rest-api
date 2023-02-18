@@ -1,8 +1,9 @@
-import {Expose, Type} from 'class-transformer';
+import {Expose, Transform, Type} from 'class-transformer';
 import {GuitarType, StringsCount} from '../../../types/product.interface.js';
 import UserResponse from '../../user/response/user.response.js';
 
 export default class ProductResponse {
+  @Transform(({obj}) => obj._id.toString())
   @Expose({name: '_id'})
   public id!: number;
 

@@ -8,4 +8,4 @@ export const Rating = {
   MAX: 5
 };
 
-export const COMMENTS_COUNT_LIMIT = 50;
+export const COMMENTS_COUNT_LIMIT = 3;

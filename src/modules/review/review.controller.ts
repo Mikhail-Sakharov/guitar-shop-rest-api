@@ -4,17 +4,19 @@ import * as core from 'express-serve-static-core';
 import {ReviewServiceInterface} from './review-service.interface.js';
 import ReviewResponse from './response/review.response.js';
 import CreateReviewDto from './dto/create-review.dto.js';
-import {ProductServiceInterface} from '../product/product-service.interface.js';
+// import {ProductServiceInterface} from '../product/product-service.interface.js';
 import {ConfigInterface} from '../../common/config/config.interface.js';
 import {Controller} from '../../common/controller/controller.js';
 import {LoggerInterface} from '../../common/logger/logger.interface.js';
-import {DocumentExistsMiddleware} from '../../common/middlewares/document-exists.middleware.js';
 import {PrivateRouteMiddleware} from '../../common/middlewares/private-route.middleware.js';
 import {ValidateDtoMiddleware} from '../../common/middlewares/validate-dto.middleware.js';
-import {ValidateObjectIdMiddleware} from '../../common/middlewares/validate-objectid.middleware.js';
 import {Component} from '../../types/component.types.js';
 import {HttpMethod} from '../../types/http-method.enum.js';
 import {fillDTO} from '../../utils/common.js';
+
+type GetReviewsParams = {
+  productId: string | undefined;
+}
 
 @injectable()
 export default class ReviewController extends Controller {
@@ -22,20 +24,16 @@ export default class ReviewController extends Controller {
     @inject(Component.LoggerInterface) logger: LoggerInterface,
     @inject(Component.ConfigInterface) configService: ConfigInterface,
     @inject(Component.ReviewServiceInterface) private readonly reviewService: ReviewServiceInterface,
-    @inject(Component.ProductServiceInterface) private readonly productService: ProductServiceInterface
+      // @inject(Component.ProductServiceInterface) private readonly productService: ProductServiceInterface
   ) {
     super(logger, configService);
 
     this.logger.info('Register routes for ReviewController…');
 
     this.addRoute({
-      path: '/:id',
+      path: '/',
       method: HttpMethod.Get,
-      handler: this.index,
-      middlewares: [
-        new ValidateObjectIdMiddleware('id'),
-        new DocumentExistsMiddleware(this.productService, 'id')
-      ]
+      handler: this.index
     });
     this.addRoute({
       path: '/',
@@ -48,8 +46,14 @@ export default class ReviewController extends Controller {
     });
   }
 
-  public async index(req: Request, res: Response): Promise<void> {
-    const comments = await this.reviewService.findByProductId(req.params.id);
+  public async index(
+    req: Request<core.ParamsDictionary | GetReviewsParams>,
+    res: Response
+  ): Promise<void> {
+    const productId = String(req.query.productId);
+    const page = Number(req.query._page);
+    const limit = Number(req.query._limit);
+    const comments = await this.reviewService.findByProductId(productId, limit, page);
     const commentsResponse = fillDTO(ReviewResponse, comments);
     this.ok(res, commentsResponse);
   }

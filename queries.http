@@ -26,6 +26,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InNha2hhcm92X21pa2hhaWxAa
 
 ### Запрос всех продуктов
 GET http://localhost:3000/products HTTP/1.1
+### Запрос детальной информации по id
+GET http://localhost:3000/products/63f058ebd71c452da6bf8bf2 HTTP/1.1
 ### Запрос с параметром stringsCount
 GET http://localhost:3000/products?stringsCount=12,6 HTTP/1.1
 ### Запрос с параметром guitarType
