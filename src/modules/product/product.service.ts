@@ -52,11 +52,14 @@ export default class ProductService implements ProductServiceInterface {
     order: ClientSortOrder,
     page: number,
     limit: number,
+    minPrice?: number,
+    maxPrice?: number,
     stringsCounts?: StringsCount[],
     guitarTypes?: GuitarType[]
   ): Promise<DocumentType<ProductEntity>[]> {
     return this.productModel
       .find()
+      .where('price').gte(minPrice ? minPrice : 0).lte(maxPrice ? maxPrice : 1000000)
       .where(guitarTypes ? {guitarType: guitarTypes} : {})
       .where(stringsCounts ? {stringsCount: stringsCounts} : {})
       .populate(['authorId'])

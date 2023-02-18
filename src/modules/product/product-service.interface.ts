@@ -16,6 +16,8 @@ export interface ProductServiceInterface extends DocumentExistsInterface {
     order: ClientSortOrder,
     page: number,
     limit: number,
+    minPrice?: number,
+    maxPrice?: number,
     stringsCounts?: StringsCount[],
     guitarTypes?: GuitarType[]
   ): Promise<DocumentType<ProductEntity>[]>;

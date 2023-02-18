@@ -26,7 +26,13 @@ type GetProductParams = {
   id: string;
 }
 
-type GetProductsParams = {
+type GetProductsQuery = {
+  _page: string;
+  _limit: string;
+  _sort: string;
+  _order: string;
+  price_gte: string;
+  price_lte: string;
   stringsCount: string[];
   guitarType: string[];
 };
@@ -101,7 +107,7 @@ export default class ProductController extends Controller {
   }
 
   public async index(
-    req: Request<core.ParamsDictionary | GetProductsParams>,
+    req: Request<core.ParamsDictionary | GetProductsQuery>,
     res: Response
   ): Promise<void> {
     const page = Number(req.query._page);
@@ -110,11 +116,15 @@ export default class ProductController extends Controller {
     const order = String(req.query._order) as ClientSortOrder;
     const guitarTypes = req.query?.guitarType?.toString().split(',') as GuitarType[];
     const stringsCounts = req.query?.stringsCount?.toString().split(',').map((item) => Number(item)) as StringsCount[];
+    const minPrice = Number(req.query.price_gte);
+    const maxPrice = Number(req.query.price_lte);
     const products = await this.productService.find(
       sort,
       order,
       page,
       limit,
+      minPrice,
+      maxPrice,
       stringsCounts,
       guitarTypes
     );
