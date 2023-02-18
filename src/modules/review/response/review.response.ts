@@ -13,6 +13,7 @@ export default class ReviewResponse {
   @Type(() => UserResponse)
   public user!: UserResponse;
 
+  @Transform(({obj}) => obj.productId.toString())
   @Expose()
   public productId!: string;
 

@@ -1,12 +1,6 @@
 import {IsInt, Max, Min, IsString, Length, IsMongoId} from 'class-validator';
 
 export default class CreateReviewDto {
-  // @IsString({message: 'userName is required to be string'})
-  // public userName!: string;
-
-  // @IsMongoId({message: 'userId is required to be a valid MondoDB ID'})
-  // public userId!: string;
-
   @IsMongoId({message: 'productId is required to be a valid MondoDB ID'})
   public productId!: string;
 
