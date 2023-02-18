@@ -21,7 +21,7 @@ export interface ProductServiceInterface extends DocumentExistsInterface {
     stringsCounts?: StringsCount[],
     guitarTypes?: GuitarType[]
   ): Promise<DocumentType<ProductEntity>[]>;
-  incReviewsCount(productId: string): Promise<DocumentType<ProductEntity> | null>;
   setProductRating(productId: string, rating: number): Promise<DocumentType<ProductEntity> | null>;
+  setReviewsCount(productId: string, reviewsCount: number): Promise<DocumentType<ProductEntity> | null>;
   exists(documentId: string): Promise<boolean>;
 }

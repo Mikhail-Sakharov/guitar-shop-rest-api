@@ -19,10 +19,10 @@ export default class ReviewService implements ReviewServiceInterface {
   public async create(dto: CreateReviewDto & {userId: string}): Promise<DocumentType<ReviewEntity>> {
     const result = await this.reviewModel.create(dto);
 
-    this.productService.incReviewsCount(dto.productId);
-
     const reviews = await this.findByProductId(dto.productId, 0);
     const reviewsTotalCount = reviews.length;
+    this.productService.setReviewsCount(dto.productId, reviewsTotalCount);
+
     const rating = reviews.reduce((res, review) => res + review.rating, 0)/reviewsTotalCount;
     this.productService.setProductRating(dto.productId, rating);
 

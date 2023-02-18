@@ -69,15 +69,13 @@ export default class ProductService implements ProductServiceInterface {
       .exec();
   }
 
-  public async incReviewsCount(productId: string): Promise<DocumentType<ProductEntity> | null> {
-    return this.productModel
-      .findByIdAndUpdate(productId, {'$inc': {
-        reviewsCount: 1,
-      }}).exec();
-  }
-
   public async setProductRating(productId: string, rating: number): Promise<DocumentType<ProductEntity> | null> {
     return this.productModel
       .findByIdAndUpdate(productId, {'$set': {rating}}).exec();
+  }
+
+  public async setReviewsCount(productId: string, reviewsCount: number): Promise<DocumentType<ProductEntity> | null> {
+    return this.productModel
+      .findByIdAndUpdate(productId, {'$set': {reviewsCount}}).exec();
   }
 }
