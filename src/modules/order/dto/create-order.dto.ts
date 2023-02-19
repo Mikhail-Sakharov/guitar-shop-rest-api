@@ -17,9 +17,6 @@ export default class CreateOrderDto {
   @Type(() => OrderItem)
   public items!: OrderItem[];
 
-  @IsMongoId({message: 'userId is required to be a valid MondoDB ID'})
-  public userId!: string;
-
   @IsInt({message: 'The value of "totalOrderPrice" should be an integer'})
   public totalOrderPrice!: number;
 }

@@ -75,6 +75,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InNha2hhcm92X21pa2hhaWxAa
   "totalOrderPrice": 2982778
 }
 
+### Запрос всех заказов
+GET http://localhost:3000/orders HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InNha2hhcm92X21pa2hhaWxAaG90bWFpbC5jb20iLCJpZCI6IjYzZjI0NmMxZDQxOGQ5ZmEwNDU5ZmEzZiIsImlhdCI6MTY3NjgyMjIxMiwiZXhwIjoxNjc2OTk1MDEyfQ.6c1rXrfOVAMQ58dJQbtvUKjvFe9moZ5CvGkwUE5v-qs
 
 
 

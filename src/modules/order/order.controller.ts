@@ -7,7 +7,7 @@ import {ConfigInterface} from '../../common/config/config.interface.js';
 import {Controller} from '../../common/controller/controller.js';
 import {LoggerInterface} from '../../common/logger/logger.interface.js';
 import {DocumentExistsMiddleware} from '../../common/middlewares/document-exists.middleware.js';
-// import {ValidateDtoMiddleware} from '../../common/middlewares/validate-dto.middleware.js';
+import {ValidateDtoMiddleware} from '../../common/middlewares/validate-dto.middleware.js';
 import {ValidateObjectIdMiddleware} from '../../common/middlewares/validate-objectid.middleware.js';
 import {Component} from '../../types/component.types.js';
 import {HttpMethod} from '../../types/http-method.enum.js';
@@ -64,7 +64,7 @@ export default class OrderController extends Controller {
       handler: this.create,
       middlewares: [
         new PrivateRouteMiddleware(),
-        // new ValidateDtoMiddleware(CreateOrderDto)
+        new ValidateDtoMiddleware(CreateOrderDto)
       ]
     });
     this.addRoute({
@@ -119,7 +119,7 @@ export default class OrderController extends Controller {
       );
     }
     const userId = user.id;
-    const order = await this.orderService.create({...body, userId});
+    const order = await this.orderService.create(body, userId);
     const orderResponse = fillDTO(OrderResponse, order);
     this.created(res, orderResponse);
   }

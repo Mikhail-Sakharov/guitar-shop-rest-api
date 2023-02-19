@@ -4,7 +4,7 @@ import CreateOrderDto from './dto/create-order.dto';
 import {OrderEntity} from './order.entity';
 
 export interface OrderServiceInterface {
-  create(dto: CreateOrderDto): Promise<DocumentType<OrderEntity>>;
+  create(dto: CreateOrderDto, userId: string): Promise<DocumentType<OrderEntity>>;
   find(
     sort: string,
     order: ClientSortOrder,

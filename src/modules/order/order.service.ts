@@ -19,10 +19,10 @@ export default class OrderService implements OrderServiceInterface {
     return !!await this.findById(documentId);
   }
 
-  public async create(dto: CreateOrderDto): Promise<DocumentType<OrderEntity>> {
+  public async create(dto: CreateOrderDto, userId: string): Promise<DocumentType<OrderEntity>> {
     const intNanoid = customAlphabet('1234567890');
     const orderNumber = `${intNanoid(2)}-${intNanoid(3)}-${intNanoid(3)}`;
-    const order = await this.orderModel.create({...dto, orderNumber});
+    const order = await this.orderModel.create({...dto, orderNumber, userId});
     this.logger.info('New order created');
 
     return order.populate('userId');
