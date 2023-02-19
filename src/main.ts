@@ -24,6 +24,10 @@ import ReviewService from './modules/review/review.service.js';
 import {ReviewEntity, ReviewModel} from './modules/review/review.entity.js';
 import {ReviewServiceInterface} from './modules/review/review-service.interface.js';
 import ReviewController from './modules/review/review.controller.js';
+import OrderController from './modules/order/order.controller.js';
+import {OrderServiceInterface} from './modules/order/order-service.interface.js';
+import {OrderEntity, OrderModel} from './modules/order/order.entity.js';
+import OrderService from './modules/order/order.service.js';
 
 const applicationContainer = new Container();
 
@@ -43,9 +47,13 @@ applicationContainer.bind<types.ModelType<ProductEntity>>(Component.ProductModel
 applicationContainer.bind<ReviewServiceInterface>(Component.ReviewServiceInterface).to(ReviewService);
 applicationContainer.bind<types.ModelType<ReviewEntity>>(Component.ReviewModel).toConstantValue(ReviewModel);
 
+applicationContainer.bind<OrderServiceInterface>(Component.OrderServiceInterface).to(OrderService);
+applicationContainer.bind<types.ModelType<OrderEntity>>(Component.OrderModel).toConstantValue(OrderModel);
+
 applicationContainer.bind<ControllerInterface>(Component.ReviewController).to(ReviewController).inSingletonScope();
 applicationContainer.bind<ControllerInterface>(Component.ProductController).to(ProductController).inSingletonScope();
 applicationContainer.bind<ControllerInterface>(Component.UserController).to(UserController).inSingletonScope();
+applicationContainer.bind<ControllerInterface>(Component.OrderController).to(OrderController).inSingletonScope();
 
 const application = applicationContainer.get<Application>(Component.Application);
 await application.init();

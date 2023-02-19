@@ -20,6 +20,7 @@ export default class Application {
     @inject(Component.LoggerInterface) private logger: LoggerInterface,
     @inject(Component.ConfigInterface) private config: ConfigInterface,
     @inject(Component.DatabaseInterface) private databaseClient: DatabaseInterface,
+    @inject(Component.OrderController) private orderController: ControllerInterface,
     @inject(Component.ReviewController) private reviewController: ControllerInterface,
     @inject(Component.ProductController) private productController: ControllerInterface,
     @inject(Component.UserController) private userController: ControllerInterface,
@@ -30,6 +31,7 @@ export default class Application {
 
   public initRoutes() {
     this.expressApp.use('/reviews', this.reviewController.router);
+    this.expressApp.use('/orders', this.orderController.router);
     this.expressApp.use('/products', this.productController.router);
     this.expressApp.use('/users', this.userController.router);
   }

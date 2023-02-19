@@ -104,7 +104,7 @@ npm run ts ./src/cli.ts -- --import <path> <bd_user> <bd_password> <bd_host> <bd
 <salt> - соль для хеширования пароля
 
 Пример использования команды:
-npm run ts ./src/cli.ts -- --import ./src/mocks/test.tsv admin test 127.0.0.1 six-cities-simple qweasdzxc
+npm run ts ./src/cli.ts -- --import ./src/mocks/test.tsv admin test 127.0.0.1 guitar-shop qweasdzxc
 
 ### 2. Запуск приложения
 

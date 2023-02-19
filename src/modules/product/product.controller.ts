@@ -150,7 +150,7 @@ export default class ProductController extends Controller {
       throw new HttpError(
         StatusCodes.UNAUTHORIZED,
         'Unauthorized',
-        'UserController'
+        'ProductController'
       );
     }
     const authorId = user.id;

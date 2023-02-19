@@ -1,7 +1,7 @@
 {
-  "name": "six-cities-simple",
+  "name": "guitar-shop",
   "version": "1.0.0",
-  "description": "Проект «Шесть городов (простой)» от HTML Academy",
+  "description": "Guitar Shop",
   "keywords": [
     "rest",
     "api",
@@ -59,7 +59,7 @@
     "inversify": "^6.0.1",
     "jose": "^4.10.0",
     "mime-types": "^2.1.35",
-    "mongoose": "^6.6.3",
+    "mongoose": "6.9.2",
     "multer": "^1.4.4",
     "nanoid": "^4.0.0",
     "pino": "^8.5.0",

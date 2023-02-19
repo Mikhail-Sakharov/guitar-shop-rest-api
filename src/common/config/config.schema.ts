@@ -58,7 +58,7 @@ export const configSchema = convict<ConfigSchema>({
     doc: 'Database name (MongoDB)',
     format: String,
     env: 'DB_NAME',
-    default: 'six-cities-simple'
+    default: 'guitar-shop'
   },
   UPLOAD_DIRECTORY: {
     doc: 'Data storage directory',
