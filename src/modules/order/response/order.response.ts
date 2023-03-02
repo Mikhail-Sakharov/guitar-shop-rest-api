@@ -1,6 +1,18 @@
 import {Expose, Transform, Type} from 'class-transformer';
-import {OrderItemType} from '../../../types/order.interface.js';
+import ProductResponse from '../../product/response/product.response.js';
 import UserResponse from '../../user/response/user.response.js';
+
+class OrderItem {
+  @Expose({name: 'productId'})
+  @Type(() => ProductResponse)
+  public product!: ProductResponse;
+
+  @Expose()
+  public quantity!: number;
+
+  @Expose()
+  public totalItemPrice!: number;
+}
 
 export default class OrderResponse {
   @Transform(({obj}) => obj._id.toString())
@@ -14,7 +26,8 @@ export default class OrderResponse {
   public orderNumber!: string;
 
   @Expose()
-  public items!: OrderItemType[];
+  @Type(() => OrderItem)
+  public items!: OrderItem[];
 
   @Expose({name: 'userId'})
   @Type(() => UserResponse)

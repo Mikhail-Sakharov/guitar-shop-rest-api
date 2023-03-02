@@ -7,6 +7,7 @@ import {OrderEntity} from './order.entity.js';
 import CreateOrderDto from './dto/create-order.dto.js';
 import {OrderServiceInterface} from './order-service.interface.js';
 import {customAlphabet} from 'nanoid';
+import {ProductModel} from '../product/product.entity.js';
 
 @injectable()
 export default class OrderService implements OrderServiceInterface {
@@ -34,26 +35,27 @@ export default class OrderService implements OrderServiceInterface {
     page: number,
     limit: number
   ): Promise<DocumentType<OrderEntity>[]> {
-    return this.orderModel
+    const orders = await this.orderModel
       .find()
       .sort({[sort]: SortOrderMap[order]})
       .skip(page > 0 ? (page - 1) * limit : 0)
       .limit(limit ?? 0)
-      .populate(['userId'])
+      .populate({path: 'items', populate: {path: 'productId', model: ProductModel}})
       .exec();
+    return orders;
   }
 
   public async findByOrderNumber(orderNumber: number): Promise<DocumentType<OrderEntity> | null> {
     return this.orderModel
       .findOne({orderNumber})
-      .populate(['userId'])
+      .populate({path: 'items', populate: {path: 'productId', model: ProductModel}})
       .exec();
   }
 
   public async findById(orderId: string): Promise<DocumentType<OrderEntity> | null> {
     return this.orderModel
       .findById(orderId)
-      .populate(['userId'])
+      .populate({path: 'items', populate: {path: 'productId', model: ProductModel}})
       .exec();
   }
 

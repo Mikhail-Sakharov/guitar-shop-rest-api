@@ -12,7 +12,7 @@ export default class ProductResponse {
 
   @Expose({name: 'authorId'})
   @Type(() => UserResponse)
-  public author!: string;
+  public author!: UserResponse;
 
   @Expose()
   public title!: string;
